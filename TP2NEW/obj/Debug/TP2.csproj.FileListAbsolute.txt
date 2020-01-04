@@ -1,0 +1,3 @@
+E:\Prog de gestion\420-329-SF Prog III\TP\TP 2\TP2-squeletteA18\TP2 - A18\obj\Debug\TP2.csprojAssemblyReference.cache
+E:\Prog de gestion\420-329-SF Prog III\TP\TP 2\TP2-squeletteA18\TP2 - A18\obj\Debug\TP2.csproj.CoreCompileInputs.cache
+D:\Desktop\New folder\obj\Debug\TP2.csprojAssemblyReference.cache
