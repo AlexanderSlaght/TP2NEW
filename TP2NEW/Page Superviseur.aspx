@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div style="float:left; width:auto">
             <asp:Label ID="Label2" runat="server" Font-Size="Larger" Text="Stagiaires"></asp:Label>
             <asp:ListView ID="ListView1" runat="server" DataKeyNames="Id" DataSourceID="SqlDataSource1">
                 <AlternatingItemTemplate>
@@ -127,6 +127,9 @@
                 </SelectedItemTemplate>
             </asp:ListView>
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:GestionStagesConnectionString %>" SelectCommand="SELECT [Id], [Nom], [Téléphone], [Courriel] FROM [Stagiaire]"></asp:SqlDataSource>
+        </div>
+        <div style="float:left; width:auto; height: 520px;">
+            <p>
             <asp:Label ID="Label3" runat="server" Font-Size="Larger" Text="Stages"></asp:Label>
             <asp:ListView ID="ListView2" runat="server" DataKeyNames="Id" DataSourceID="SqlDataSource2">
                 <AlternatingItemTemplate>
@@ -262,6 +265,7 @@
             </asp:ListView>
             <asp:Button ID="Button1" runat="server" Text="Ajouter un Stage" />
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:GestionStagesConnectionString %>" SelectCommand="SELECT [Id], [Titre], [Début], [Fin], [Commentaire] FROM [Stage]"></asp:SqlDataSource>
+            </p>
         </div>
     </form>
 </body>

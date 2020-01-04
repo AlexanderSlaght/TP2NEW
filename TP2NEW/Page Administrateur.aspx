@@ -8,7 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div style="width:auto;float:left">
             <asp:Label ID="Label1" runat="server" Font-Size="Larger" Text="Superviseur"></asp:Label>
             <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="ListView1_SelectedIndexChanged" style="height:200px; overflow:scroll;" DataKeyNames="Id">
                 <AlternatingItemTemplate>
@@ -130,8 +130,11 @@
             </asp:ListView>
             <asp:Button ID="Button1" runat="server" Text="Ajouter un superviseur" />
             <br />
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:GestionStagesConnectionString %>" SelectCommand="SELECT [Id], [Nom], [Téléphone], [Courriel] FROM [Superviseur]"></asp:SqlDataSource>
+        </div>
+        <div style="width:auto;float:left">
             <asp:Label ID="Label2" runat="server" Font-Size="Larger" Text="Stagiaire"></asp:Label>
-            <asp:ListView ID="ListView2" runat="server" DataSourceID="SqlDataSource2" DataKeyNames="Id">
+                <asp:ListView ID="ListView2" runat="server" DataSourceID="SqlDataSource2" DataKeyNames="Id">
                 <AlternatingItemTemplate>
                     <tr style="background-color:#FFF8DC;">
                         <td>
@@ -248,8 +251,9 @@
                 </SelectedItemTemplate>
             </asp:ListView>
             <asp:Button ID="Button2" runat="server" Text="Ajouter un stage" />
+
             <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:GestionStagesConnectionString %>" SelectCommand="SELECT [Id], [Nom], [Téléphone], [Courriel] FROM [Stagiaire]"></asp:SqlDataSource>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:GestionStagesConnectionString %>" SelectCommand="SELECT [Id], [Nom], [Téléphone], [Courriel] FROM [Superviseur]"></asp:SqlDataSource>
+
         </div>
     </form>
 </body>
