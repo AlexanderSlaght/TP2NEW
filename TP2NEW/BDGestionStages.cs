@@ -24,12 +24,14 @@ namespace TP2
     /// </example>
     public class BDGestionStages
     {
+
         /// <summary>
         /// Constructeur par défaut.
         /// </summary>
         public BDGestionStages()
         {
-            
+            this.m_BaseDeDonnées = new GestionStagesDataContext();
+
         }
 
         /// <summary>
@@ -38,7 +40,7 @@ namespace TP2
         /// </summary>
         public void Sauvegarder()
         {
-            
+            this.m_BaseDeDonnées.SubmitChanges();
         }
 
 
@@ -50,9 +52,9 @@ namespace TP2
         /// <param name="p_Stagiaire">Objet à ajouter</param>
         public void Ajouter(Stagiaire p_Stagiaire)
         {
-            Debug.Assert(p_Stagiaire != null, "p_Stagiaire doit être différent de null");
-            
-            
+            Debug.Assert(p_Stagiaire != null, "p_Client doit être différent de null");
+
+            this.m_BaseDeDonnées.Stagiaires.InsertOnSubmit(p_Stagiaire);
         }
 
         /// <summary>
@@ -63,7 +65,8 @@ namespace TP2
         /// <returns>Un Stagiaire ou null</returns>
         public Stagiaire GetStagiaire(int p_Id)
         {
-            
+            return m_BaseDeDonnées.Stagiaires.SingleOrDefault(
+                stag => stag.Id == p_Id);
         }
 
         /// <summary>
@@ -74,7 +77,9 @@ namespace TP2
         /// <returns>Un stagiaire ou null</returns>
         public Stagiaire GetStagiaire(string p_NomUtilisateur)
         {
-            
+            return m_BaseDeDonnées.Stagiaires.SingleOrDefault(
+                stagiaire =>
+                    (stagiaire.NomUtilisateur == p_NomUtilisateur));
         }
 
         /// <summary>
@@ -82,8 +87,9 @@ namespace TP2
         /// </summary>
         public IQueryable<Stagiaire> GetAllStagiaires()
         {
-            
+            return m_BaseDeDonnées.Stagiaires;
         }
+
 
 
         #endregion
@@ -97,7 +103,9 @@ namespace TP2
         /// <param name="p_Superviseur">Objet à ajouter</param>
         public void Ajouter(Superviseur p_Superviseur)
         {
-            
+            Debug.Assert(p_Superviseur != null, "p_Superviseur doit être différent de null");
+
+            this.m_BaseDeDonnées.Superviseurs.InsertOnSubmit(p_Superviseur);
         }
 
         /// <summary>
@@ -108,7 +116,9 @@ namespace TP2
         /// <returns>Un Superviseur ou null</returns>
         public Superviseur GetSuperviseur(int p_Id)
         {
-            
+            return m_BaseDeDonnées.Superviseurs.SingleOrDefault(
+                superviseur =>
+                    (superviseur.Id == p_Id));
         }
 
         /// <summary>
@@ -119,7 +129,9 @@ namespace TP2
         /// <returns>Un superviseur ou null</returns>
         public Superviseur GetSuperviseur(string p_NomUtilisateur)
         {
-            
+            return m_BaseDeDonnées.Superviseurs.SingleOrDefault(
+                superviseur=>
+                    (superviseur.NomUtilisateur == p_NomUtilisateur));
         }
 
         /// <summary>
@@ -127,7 +139,7 @@ namespace TP2
         /// </summary>
         public IQueryable<Superviseur> GetAllSuperviseurs()
         {
-            
+            return m_BaseDeDonnées.Superviseurs;
         }
 
         #endregion
@@ -146,7 +158,10 @@ namespace TP2
             Debug.Assert(GetSuperviseur(p_SuperviseurId) != null, "Le superviseur doit exister");
             Debug.Assert(GetStagiaire(p_StagiaireId) != null, "Le stagiaire doit exister");
 
-            
+            p_Stage.SupersiveurId = p_SuperviseurId;
+            p_Stage.StagiaireId = p_StagiaireId;
+           
+            this.m_BaseDeDonnées.Stages.InsertOnSubmit(p_Stage);
         }
 
         /// <summary>
@@ -157,7 +172,8 @@ namespace TP2
         /// <returns>Un Stage ou null</returns>
         public Stage GetStage(int p_Id)
         {
-            
+            return m_BaseDeDonnées.Stages.SingleOrDefault(
+                stage => stage.Id == p_Id);
         }
 
         /// <summary>
@@ -165,7 +181,7 @@ namespace TP2
         /// </summary>
         public IQueryable<Stage> GetAllStages()
         {
-            
+            return m_BaseDeDonnées.Stages;
         }
 
         #endregion
@@ -178,7 +194,7 @@ namespace TP2
         /// <returns>L'admin</returns>
         public Administrateur GetAdministrateur()
         {
-            
+            return (TP2.Administrateur)this.m_BaseDeDonnées.Administrateurs.SingleOrDefault();
         }
 
         #endregion
@@ -190,3 +206,5 @@ namespace TP2
         private GestionStagesDataContext m_BaseDeDonnées;
     }
 }
+
+
