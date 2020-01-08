@@ -11,7 +11,14 @@ namespace TP2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (!IsPostBack && Session["Stagiaire"] != null)
+            {
+                Stagiaire stagi = (Stagiaire)Session["Stagiaire"];
+                txtNomUtilisateur.Text = stagi.NomUtilisateur;
+                txtMotDePasse.Text = stagi.MotDePasse;
+                btnStagiaire.Enabled = false;
+
+            }
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
@@ -33,11 +40,13 @@ namespace TP2
                Stagiaire stagiaire =  bd.GetStagiaire(txtNomUtilisateur.Text);
                 if (stagiaire.MotDePasse != txtMotDePasse.Text || stagiaire == null)
                 {
-                    litErreur.Text = "Erreur de connexion : Vérifier votre mot de passe";
+                    litErreur.Text = "Erreur de connexion : Vérifier votre mot de passe et votre identifiant";
                 }
                 else
                 {
                     litErreur.Text = "";
+                    Session["Stagiaire"] = stagiaire;
+                    Session["StagiaireID"] = stagiaire.Id;
                     this.Response.Redirect("~/Page Stagiaire.aspx");
                 }
 
@@ -69,9 +78,7 @@ namespace TP2
                     }
 
                 }
-            }
-
-            
+            }          
         }
 
         protected void btnStagiaire_Click(object sender, EventArgs e)
@@ -87,7 +94,7 @@ namespace TP2
         {
             btnSuperviseur.Enabled = false;
             btnAdmin.Enabled = true;
-            btnStagiaire.Enabled = false;
+            btnStagiaire.Enabled = true;
             litErreur.Text = "";
 
         }

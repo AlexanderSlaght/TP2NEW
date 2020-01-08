@@ -11,7 +11,26 @@ namespace TP2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if(!this.IsPostBack && Session["Stagiaire"] == null)
+            {
+                this.Response.Redirect("~/Page d'accueil.aspx");
+            }
+        }
 
+        protected void ListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnRetour_Click(object sender, EventArgs e)
+        {
+            this.Response.Redirect("~/Page d'accueil.aspx");
+        }
+
+        protected void lnkDeconnection_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            this.Response.Redirect("~/Page d'accueil.aspx");
         }
     }
 }
