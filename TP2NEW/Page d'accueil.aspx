@@ -17,19 +17,26 @@
             <asp:Label ID="Label2" runat="server" Font-Size="Larger" Text="Se connecter"></asp:Label>
         </p>
         <p>
-            <asp:Button ID="Button1" runat="server" Text="Stagiaire" />
-            <asp:Button ID="Button2" runat="server" Text="Superviseur" />
-            <asp:Button ID="Button3" runat="server" Text="Admin" />
+            <asp:Button ID="btnStagiaire" runat="server" Text="Stagiaire" OnClick="btnStagiaire_Click" />
+            <asp:Button ID="btnSuperviseur" runat="server" Text="Superviseur" OnClick="btnSuperviseur_Click" />
+            <asp:Button ID="btnAdmin" runat="server" Text="Admin" OnClick="btnAdmin_Click" />
         </p>
         <p>
             Nom d&#39;utilisateur :
-            <asp:TextBox ID="TextBox1" runat="server" Width="230px"></asp:TextBox>
+            <asp:TextBox ID="txtNomUtilisateur" runat="server" Width="230px"></asp:TextBox>
         </p>
         <p>
             Mot de passe :
-            <asp:TextBox ID="TextBox2" runat="server" Width="226px"></asp:TextBox>
+            <asp:TextBox ID="txtMotDePasse" runat="server" Width="226px"></asp:TextBox>
         </p>
-        <asp:Button ID="Button4" runat="server" Text="Soumettre" />
+        <table>
+            <tr>
+                <td><asp:Button ID="btnSoumettre" runat="server" Text="Soumettre" OnClick="btnSoumettre_click" /></td>
+                <td><asp:Literal ID="litErreur" runat="server" Text=""></asp:Literal></td>
+
+            </tr>
+        </table>
+        
         <p>
             Première utilisation? Créer vous un compte
             <asp:LinkButton ID="LinkButton2" runat="server">Maintenant!</asp:LinkButton>
