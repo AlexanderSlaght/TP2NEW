@@ -17,68 +17,13 @@ namespace TP2
                 txtNomUtilisateur.Text = stagi.NomUtilisateur;
                 txtMotDePasse.Text = stagi.MotDePasse;
                 btnStagiaire.Enabled = false;
-
             }
         }
 
-        protected void LinkButton1_Click(object sender, EventArgs e)
-        {
-            Server.Transfer("Page Administrateur.aspx");
-        }
 
         protected void btnSoumettre_click(object sender, EventArgs e)
         {
-            BDGestionStages bd = new BDGestionStages();
-
-            if(btnSuperviseur.Enabled==true && btnStagiaire.Enabled==true && btnAdmin.Enabled == true)
-            {
-                litErreur.Text = "Veuillez d'abord sélectionner votre status";
-            }
-
-            if (btnStagiaire.Enabled == false)
-            {
-               Stagiaire stagiaire =  bd.GetStagiaire(txtNomUtilisateur.Text);
-                if (stagiaire.MotDePasse != txtMotDePasse.Text || stagiaire == null)
-                {
-                    litErreur.Text = "Erreur de connexion : Vérifier votre mot de passe et votre identifiant";
-                }
-                else
-                {
-                    litErreur.Text = "";
-                    Session["Stagiaire"] = stagiaire;
-                    Session["StagiaireID"] = stagiaire.Id;
-                    this.Response.Redirect("~/Page Stagiaire.aspx");
-                }
-
-            }
-            if (btnSuperviseur.Enabled == false)
-            {
-                Superviseur supervis = bd.GetSuperviseur(txtNomUtilisateur.Text);
-                if (supervis.MotDePasse != txtMotDePasse.Text || supervis == null)
-                {
-                    litErreur.Text = "Erreur de connexion : Vérifier votre mot de passe";
-                }
-                else
-                {
-                    litErreur.Text = "";
-                    this.Response.Redirect("~/Page Superviseur.aspx");
-                }
-
-                if (btnAdmin.Enabled == false)
-                {
-                    Administrateur admin = bd.GetAdministrateur();
-                    if (admin.MotDePasse != txtMotDePasse.Text || supervis == null)
-                    {
-                        litErreur.Text = "Erreur de connexion : Vérifier votre mot de passe";
-                    }
-                    else
-                    {
-                        litErreur.Text = "";
-                        this.Response.Redirect("~/Page Administrateur.aspx");
-                    }
-
-                }
-            }          
+            SoumettreLogin();
         }
 
         protected void btnStagiaire_Click(object sender, EventArgs e)
@@ -106,6 +51,61 @@ namespace TP2
             btnSuperviseur.Enabled = true;
             litErreur.Text = "";
 
+        }
+
+        public void SoumettreLogin()
+        {
+            BDGestionStages bd = new BDGestionStages();
+
+            if (btnSuperviseur.Enabled == true && btnStagiaire.Enabled == true && btnAdmin.Enabled == true)
+            {
+                litErreur.Text = "Veuillez d'abord sélectionner votre status";
+            }
+
+            if (btnStagiaire.Enabled == false)
+            {
+                Stagiaire stagiaire = bd.GetStagiaire(txtNomUtilisateur.Text);
+                if (stagiaire.MotDePasse != txtMotDePasse.Text || stagiaire == null)
+                {
+                    litErreur.Text = "Erreur de connexion : Vérifier votre mot de passe et votre identifiant";
+                }
+                else
+                {
+                    litErreur.Text = "";
+                    Session["Stagiaire"] = stagiaire;
+                    Session["StagiaireID"] = stagiaire.Id;
+                    this.Response.Redirect("~/Page Stagiaire.aspx");
+                }
+
+            }
+            if (btnSuperviseur.Enabled == false)
+            {
+                Superviseur supervis = bd.GetSuperviseur(txtNomUtilisateur.Text);
+                if (supervis.MotDePasse != txtMotDePasse.Text || supervis == null)
+                {
+                    litErreur.Text = "Erreur de connexion : Vérifier votre mot de passe";
+                }
+                else
+                {
+                    litErreur.Text = "";
+                    Session["Superviseur"] = supervis;
+                    this.Response.Redirect("~/Page Superviseur.aspx");
+                }
+
+                if (btnAdmin.Enabled == false)
+                {
+                    Administrateur admin = bd.GetAdministrateur();
+                    if (admin.MotDePasse != txtMotDePasse.Text || supervis == null)
+                    {
+                        litErreur.Text = "Erreur de connexion : Vérifier votre mot de passe";
+                    }
+                    else
+                    {
+                        litErreur.Text = "";
+                        this.Response.Redirect("~/Page Administrateur.aspx");
+                    }
+                }
+            }
         }
     }
 }

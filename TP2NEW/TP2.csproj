@@ -65,6 +65,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AjoutModifStage.aspx" />
     <Content Include="App_Data\GestionStages.mdf">
     </Content>
     <Content Include="App_Data\GestionStages_log.ldf">
@@ -77,6 +78,13 @@
     <Content Include="Page Stagiaire.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjoutModifStage.aspx.cs">
+      <DependentUpon>AjoutModifStage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AjoutModifStage.aspx.designer.cs">
+      <DependentUpon>AjoutModifStage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BDGestionStages.cs" />
     <Compile Include="Page d%27accueil.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
