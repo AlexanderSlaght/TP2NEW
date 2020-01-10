@@ -33,6 +33,15 @@ namespace TP2
         protected global::System.Web.UI.WebControls.Literal litTitre;
 
         /// <summary>
+        /// Contrôle vsErreurs.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary vsErreurs;
+
+        /// <summary>
         /// Contrôle litSousTitre.
         /// </summary>
         /// <remarks>
@@ -60,6 +69,15 @@ namespace TP2
         protected global::System.Web.UI.WebControls.TextBox txtTitreStage;
 
         /// <summary>
+        /// Contrôle valTitre.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator valTitre;
+
+        /// <summary>
         /// Contrôle lblDebutStage.
         /// </summary>
         /// <remarks>
@@ -78,6 +96,15 @@ namespace TP2
         protected global::System.Web.UI.WebControls.TextBox txtDebutStage;
 
         /// <summary>
+        /// Contrôle valRegexDebut.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator valRegexDebut;
+
+        /// <summary>
         /// Contrôle lblFinStage.
         /// </summary>
         /// <remarks>
@@ -94,6 +121,15 @@ namespace TP2
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFinStage;
+
+        /// <summary>
+        /// Contrôle valRegexFinStage.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator valRegexFinStage;
 
         /// <summary>
         /// Contrôle lblCommentaire.
@@ -130,5 +166,23 @@ namespace TP2
         /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSoumettre;
+
+        /// <summary>
+        /// Contrôle litErreur.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litErreur;
+
+        /// <summary>
+        /// Contrôle btnOk.
+        /// </summary>
+        /// <remarks>
+        /// Champ généré automatiquement.
+        /// Pour modifier, déplacez la déclaration de champ du fichier de concepteur dans le fichier code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnOk;
     }
 }

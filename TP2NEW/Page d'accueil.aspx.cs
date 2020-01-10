@@ -18,6 +18,15 @@ namespace TP2
                 txtMotDePasse.Text = stagi.MotDePasse;
                 btnStagiaire.Enabled = false;
             }
+
+            if (!IsPostBack && Session["Superviseur"] != null)
+            {
+                Superviseur supervis = (Superviseur)Session["Superviseur"];
+                txtNomUtilisateur.Text = supervis.NomUtilisateur;
+                txtMotDePasse.Text = supervis.MotDePasse;
+                btnSuperviseur.Enabled = false;
+            }
+
         }
 
 
@@ -91,19 +100,20 @@ namespace TP2
                     Session["Superviseur"] = supervis;
                     this.Response.Redirect("~/Page Superviseur.aspx");
                 }
+   
+            }
 
-                if (btnAdmin.Enabled == false)
+            if (btnAdmin.Enabled == false)
+            {
+                Administrateur admin = bd.GetAdministrateur();
+                if (admin.MotDePasse != txtMotDePasse.Text || admin == null)
                 {
-                    Administrateur admin = bd.GetAdministrateur();
-                    if (admin.MotDePasse != txtMotDePasse.Text || supervis == null)
-                    {
-                        litErreur.Text = "Erreur de connexion : Vérifier votre mot de passe";
-                    }
-                    else
-                    {
-                        litErreur.Text = "";
-                        this.Response.Redirect("~/Page Administrateur.aspx");
-                    }
+                    litErreur.Text = "Erreur de connexion : Vérifier votre mot de passe";
+                }
+                else
+                {
+                    litErreur.Text = "";
+                    this.Response.Redirect("~/Page Administrateur.aspx");
                 }
             }
         }

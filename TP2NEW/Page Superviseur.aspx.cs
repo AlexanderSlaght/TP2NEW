@@ -15,10 +15,7 @@ namespace TP2
             {
                 
             }
-            else
-            {
-                //this.Response.Redirect("~/Page d'accueil.aspx");
-            }
+            
         }
 
         protected void SqlDataSource2_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
@@ -55,7 +52,10 @@ namespace TP2
 
         protected void btnModifier_Click(object sender, EventArgs e)
         {
-            this.Response.Redirect("~/AjoutModifStage.aspx");
+            if (gvStages.SelectedRow != null && Session["StageModif"] != null)
+            {
+                this.Response.Redirect("~/AjoutModifStage.aspx");
+            }
         }
 
         protected void gvStages_SelectedIndexChanged(object sender, EventArgs e)
@@ -64,22 +64,37 @@ namespace TP2
             {
                 if (gvStages.SelectedRow != null)
                 {
-                    int index = gvStages.SelectedIndex + 1;
+                    int index = gvStages.SelectedIndex + 6;
+  
                     BDGestionStages bd = new BDGestionStages();
-                    Stage stage = (Stage)bd.GetStage(index);
 
-                    Session["StageModif"] = stage;
+                    Stage stageRecupere = (Stage)bd.GetStage(index);
+
+                    Session["StageModif"] = stageRecupere;
                 }
             }
             catch
             {
 
             }
+           
         }
 
         protected void btnAjouter_Click(object sender, EventArgs e)
         {
             this.Response.Redirect("~/AjoutModifStage.aspx");
+        }
+
+        protected void lnkDeconnection_Click(object sender, EventArgs e)
+        {
+            this.Session.Abandon();
+            this.Response.Redirect("~/Page d'accueil.aspx");
+
+        }
+
+        protected void btnRetour_Click(object sender, EventArgs e)
+        {
+            this.Response.Redirect("~/Page d'accueil.aspx");
         }
     }
 }

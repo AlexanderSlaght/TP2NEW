@@ -130,7 +130,7 @@ namespace TP2
         public Superviseur GetSuperviseur(string p_NomUtilisateur)
         {
             return m_BaseDeDonnées.Superviseurs.SingleOrDefault(
-                superviseur=>
+                superviseur =>
                     (superviseur.NomUtilisateur == p_NomUtilisateur));
         }
 
@@ -160,8 +160,43 @@ namespace TP2
 
             p_Stage.SupersiveurId = p_SuperviseurId;
             p_Stage.StagiaireId = p_StagiaireId;
-           
+
             this.m_BaseDeDonnées.Stages.InsertOnSubmit(p_Stage);
+
+        }
+        public void Ajouter(Stage p_stage)
+        {
+            Debug.Assert(p_stage != null, "p_Stage doit être différent de null");
+
+            this.m_BaseDeDonnées.Stages.InsertOnSubmit(p_stage);
+        }
+
+        //public void ModifierStage(Stage p_StageModifie, int p_index)
+        //{
+        //    Debug.Assert(p_StageModifie != null, "p_StageModifie doit être différent de null");
+        //    Debug.Assert(GetSuperviseur(p_index) != null, "L'index doit être préciser");
+
+        //    Stage vieux_stage = m_BaseDeDonnées.Stages.SingleOrDefault(stage => stage.Id == p_index);
+
+
+        //    this.m_BaseDeDonnées.Stages.InsertOnSubmit(p_StageModifie);
+        //    this.m_BaseDeDonnées.Stages.DeleteOnSubmit(vieux_stage);
+
+
+        //}
+        public void SupprimerStage(Stage p_StageASupprimer)
+        {
+            Debug.Assert(p_StageASupprimer != null, "p_Stage doit être différent de null");
+
+            this.m_BaseDeDonnées.Stages.DeleteOnSubmit(p_StageASupprimer);
+        }
+        public void SupprimerStage(int p_index)
+        {
+            Debug.Assert(GetStage(p_index) != null, "p_index doit être différent de null");
+
+            Stage deleteStage = this.m_BaseDeDonnées.Stages.SingleOrDefault(Stage => (Stage.Id == p_index));
+
+            this.m_BaseDeDonnées.Stages.DeleteOnSubmit(deleteStage);
         }
 
         /// <summary>
@@ -192,10 +227,18 @@ namespace TP2
         /// Retourne l'administrateur du site.
         /// </summary>
         /// <returns>L'admin</returns>
-        public Administrateur GetAdministrateur()
+        public Administrateur­­­ GetAdministrateur(int p_Id)
         {
-            return (TP2.Administrateur)this.m_BaseDeDonnées.Administrateurs.SingleOrDefault();
+            return m_BaseDeDonnées.Administrateurs.SingleOrDefault(
+                Administrateur => Administrateur.Id == p_Id);
         }
+
+        public Administrateur­­­ GetAdministrateur()
+        {
+            return m_BaseDeDonnées.Administrateurs.SingleOrDefault();
+        }
+
+
 
         #endregion
 

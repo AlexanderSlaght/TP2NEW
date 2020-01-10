@@ -18,5 +18,11 @@ namespace TP2
         {
 
         }
+
+        protected void lnkDeconnection_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            this.Response.Redirect("~/Page d'accueil.aspx");
+        }
     }
 }

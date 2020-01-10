@@ -11,6 +11,7 @@
         <div>
             <asp:Label ID="Label2" runat="server" Font-Size="Larger" Text="Liste de stages :"></asp:Label>
         </div>
+        
         <asp:ListView ID="lvStages" runat="server" DataSourceID="dsStages" OnSelectedIndexChanged="ListView1_SelectedIndexChanged">
             <AlternatingItemTemplate>
                 <tr style="background-color:#FFF8DC;">
@@ -129,6 +130,7 @@
                 </tr>
             </SelectedItemTemplate>
         </asp:ListView>
+            </div>
         <asp:SqlDataSource ID="dsStages" runat="server" ConnectionString="<%$ ConnectionStrings:C:\USERS\ABOUMSO\DOCUMENTS\COURS PROG DE GESTION\420-329-SF PROG III\TP\TP 2\TP2\APP_DATA\GESTIONSTAGES.MDFConnectionString %>" SelectCommand="SELECT [Titre], [Début], [Fin], [Commentaire] FROM [Stage] WHERE ([StagiaireId] = @StagiaireId)">
             <SelectParameters>
                 <asp:SessionParameter Name="StagiaireId" SessionField="StagiaireId" Type="Int32" />
